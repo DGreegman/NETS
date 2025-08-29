@@ -10,7 +10,8 @@ A simple, interactive CLI tool to quickly scaffold a new Node.js project using t
 - **Interactive Setup:** Guides you through the project creation process.
 - **Language Choice:** Supports both TypeScript and standard JavaScript.
 - **Modern Project Structure:** Creates a logical and scalable directory structure (controllers, services, routes, etc.).
-- **Pre-configured Tooling:** Comes with ESLint and Prettier set up out-of-the-box.
+- **Optimized Tooling:** Comes with ESLint, Prettier, and an optimized `tsconfig.json` for TypeScript projects.
+- **Faster Installation:** Automatically detects and uses `pnpm` or `yarn` if available, resulting in a faster and more efficient setup.
 - **Essential Scripts:** `package.json` is pre-configured with `dev`, `start`, and `build` scripts.
 - **Automatic `.gitignore` and `.env`:** Generates essential `.gitignore` and `.env` files from the start.
 - **User-Friendly Feedback:** Displays a loading spinner during dependency installation.
@@ -31,6 +32,7 @@ The tool will then prompt you for the following information:
 That's it! The tool will create a new directory with your project name and install all the necessary dependencies.
 
 ```bash
+✔ Dependencies installed with pnpm.
 ✔ Project my-api is set up and ready to go!
 ```
 
