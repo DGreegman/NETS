@@ -1,7 +1,7 @@
 # NETS - Node.js Express TypeScript/JavaScript Scaffolder
 
 [![NPM version](https://img.shields.io/npm/v/nets.svg)](https://www.npmjs.com/package/nets)
-[![License](https://img.shields.io/npm/l/nets.svg)](https://github.com/your-username/nets/blob/main/LICENSE)
+[![License](https://img.shields.io/npm/l/nets.svg)](https://github.com/DGreegman/nets/blob/main/LICENSE)
 
 A simple, interactive CLI tool to quickly scaffold a new Node.js project using the Express framework. Get a production-ready setup for either **TypeScript** or **JavaScript** in seconds.
 
