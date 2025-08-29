@@ -12,7 +12,7 @@ const installPackages = (projectName, packages, dev = false) => {
     const command = 'npm';
     const args = ['install', dev ? '--save-dev' : '--save', ...packages];
 
-    const child = spawn(command, args, { cwd: projectName, stdio: 'pipe' });
+    const child = spawn(command, args, { cwd: projectName, stdio: 'pipe', shell: true });
 
     child.on('close', (code) => {
       if (code !== 0) {
