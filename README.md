@@ -1,7 +1,7 @@
 # NETS - Node.js Express TypeScript/JavaScript Scaffolder
 
-[![NPM version](https://img.shields.io/npm/v/nets.svg)](https://www.npmjs.com/package/nets)
-[![License](https://img.shields.io/npm/l/nets.svg)](https://github.com/DGreegman/nets/blob/main/LICENSE)
+[![NPM version](https://img.shields.io/npm/v/@dgreegman/nets.svg)](https://www.npmjs.com/package/@dgreegman/nets)
+[![License](https://img.shields.io/npm/l/@dgreegman/nets.svg)](https://github.com/DGreegman/nets/blob/main/LICENSE)
 
 A simple, interactive CLI tool to quickly scaffold a new Node.js project using the Express framework. Get a production-ready setup for either **TypeScript** or **JavaScript** in seconds.
 
@@ -15,20 +15,12 @@ A simple, interactive CLI tool to quickly scaffold a new Node.js project using t
 - **Automatic `.gitignore` and `.env`:** Generates essential `.gitignore` and `.env` files from the start.
 - **User-Friendly Feedback:** Displays a loading spinner during dependency installation.
 
-## Installation
-
-To use NETS, install it globally from the npm package registry:
-
-```bash
-npm install -g nets
-```
-
 ## Usage
 
-Once installed, navigate to the directory where you want to create your new project and run the following command:
+To create a new project, run the following command in your terminal:
 
 ```bash
-nets
+npx @dgreegman/nets
 ```
 
 The tool will then prompt you for the following information:
@@ -41,16 +33,6 @@ That's it! The tool will create a new directory with your project name and insta
 ```bash
 ✔ Project my-api is set up and ready to go!
 ```
-
-## Alternative Usage: `npx`
-
-If you prefer not to install the package globally, you can run it directly using `npx`:
-
-```bash
-npx nets
-```
-
-This command downloads the latest version, runs the setup, and doesn't leave any packages installed globally.
 
 ## Generated Project Structure
 
