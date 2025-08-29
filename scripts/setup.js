@@ -6,18 +6,40 @@ const inquirer = require('inquirer');
 const { execSync, spawn } = require('child_process');
 const ora = require('ora');
 
+const getPackageManager = () => {
+  try {
+    execSync('pnpm --version', { stdio: 'ignore' });
+    return 'pnpm';
+  } catch (e) {
+    try {
+      execSync('yarn --version', { stdio: 'ignore' });
+      return 'yarn';
+    } catch (e) {
+      return 'npm';
+    }
+  }
+};
+
 const installPackages = (projectName, packages, dev = false) => {
   return new Promise((resolve, reject) => {
-    const spinner = ora(`Installing ${dev ? 'dev ' : ''}dependencies...`).start();
-    const command = 'npm';
-    const args = ['install', dev ? '--save-dev' : '--save', ...packages];
+    const packageManager = getPackageManager();
+    const spinner = ora(`Installing ${dev ? 'dev ' : ''}dependencies with ${packageManager}...`).start();
+    
+    let args;
+    if (packageManager === 'yarn') {
+      args = ['add', ...(dev ? ['-D'] : []), ...packages];
+    } else if (packageManager === 'pnpm') {
+      args = ['add', ...(dev ? ['-D'] : []), ...packages];
+    } else {
+      args = ['install', dev ? '--save-dev' : '--save', ...packages];
+    }
 
-    const child = spawn(command, args, { cwd: projectName, stdio: 'pipe', shell: true });
+    const child = spawn(packageManager, args, { cwd: projectName, stdio: 'pipe', shell: true });
 
     child.on('close', (code) => {
       if (code !== 0) {
         spinner.fail('Installation failed.');
-        reject(new Error('npm install failed'));
+        reject(new Error(`${packageManager} install failed`));
         return;
       }
       spinner.succeed('Dependencies installed.');
@@ -60,8 +82,9 @@ const setupTypeScript = async (projectName) => {
   fs.copyFileSync(path.join(templateDir, 'typescript', '.eslintrc.json'), path.join(projectName, '.eslintrc.json'));
   fs.copyFileSync(path.join(templateDir, 'typescript', '.prettierrc.json'), path.join(projectName, '.prettierrc.json'));
 
-  // Initialize npm
-  execSync(`cd ${projectName} && npm init -y`);
+  // Initialize package manager
+  const packageManager = getPackageManager();
+  execSync(`cd ${projectName} && ${packageManager} init -y`);
 
   // Install packages
   await installPackages(projectName, ['express', 'dotenv']);
@@ -101,7 +124,8 @@ const setupJavaScript = async (projectName) => {
   fs.copyFileSync(path.join(templateDir, 'javascript', '.prettierrc.json'), path.join(projectName, '.prettierrc.json'));
 
   // Initialize npm
-  execSync(`cd ${projectName} && npm init -y`);
+  const packageManager = getPackageManager();
+  execSync(`cd ${projectName} && ${packageManager} init -y`);
 
   // Install packages
   await installPackages(projectName, ['express', 'dotenv']);
@@ -143,7 +167,8 @@ const init = async () => {
   console.log(`\nProject ${projectName} is set up and ready to go!`);
   console.log(`\nTo get started, navigate to the project directory and run the following commands:\n`);
   console.log(`cd ${projectName}`);
-  console.log(`npm run dev`);
+  const packageManager = getPackageManager();
+  console.log(`${packageManager} run dev`);
 };
 
 init();
