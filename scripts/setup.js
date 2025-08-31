@@ -61,17 +61,17 @@ const createCommonFiles = (projectName) => {
 const setupTypeScript = async (projectName) => {
   // Create directory structure
   fs.mkdirSync(projectName);
-  fs.mkdirSync(`${projectName}/src`);
-  fs.mkdirSync(`${projectName}/src/routes`);
-  fs.mkdirSync(`${projectName}/src/middlewares`);
-  fs.mkdirSync(`${projectName}/src/controllers`);
-  fs.mkdirSync(`${projectName}/src/services`);
-  fs.mkdirSync(`${projectName}/src/utils`);
-  fs.mkdirSync(`${projectName}/src/config`);
-  fs.mkdirSync(`${projectName}/src/interfaces`);
-  fs.mkdirSync(`${projectName}/src/models`);
-  fs.mkdirSync(`${projectName}/src/errors`);
-  fs.mkdirSync(`${projectName}/src/email`);
+  fs.mkdirSync(path.join(projectName, 'src'));
+  fs.mkdirSync(path.join(projectName, 'src', 'routes'));
+  fs.mkdirSync(path.join(projectName, 'src', 'middlewares'));
+  fs.mkdirSync(path.join(projectName, 'src', 'controllers'));
+  fs.mkdirSync(path.join(projectName, 'src', 'services'));
+  fs.mkdirSync(path.join(projectName, 'src', 'utils'));
+  fs.mkdirSync(path.join(projectName, 'src', 'config'));
+  fs.mkdirSync(path.join(projectName, 'src', 'interfaces'));
+  fs.mkdirSync(path.join(projectName, 'src', 'models'));
+  fs.mkdirSync(path.join(projectName, 'src', 'errors'));
+  fs.mkdirSync(path.join(projectName, 'src', 'email'));
 
   createCommonFiles(projectName);
 
@@ -84,7 +84,11 @@ const setupTypeScript = async (projectName) => {
 
   // Initialize package manager
   const packageManager = getPackageManager();
-  execSync(`cd ${projectName} && ${packageManager} init -y`);
+  if (packageManager === 'pnpm') {
+    execSync(`${packageManager} init`, { cwd: projectName });
+  } else {
+    execSync(`${packageManager} init -y`, { cwd: projectName });
+  }
 
   // Install packages
   await installPackages(projectName, ['express', 'dotenv']);
@@ -103,17 +107,17 @@ const setupTypeScript = async (projectName) => {
 const setupJavaScript = async (projectName) => {
   // Create directory structure
   fs.mkdirSync(projectName);
-  fs.mkdirSync(`${projectName}/src`);
-  fs.mkdirSync(`${projectName}/src/routes`);
-  fs.mkdirSync(`${projectName}/src/middlewares`);
-  fs.mkdirSync(`${projectName}/src/controllers`);
-  fs.mkdirSync(`${projectName}/src/services`);
-  fs.mkdirSync(`${projectName}/src/utils`);
-  fs.mkdirSync(`${projectName}/src/config`);
-  fs.mkdirSync(`${projectName}/src/interfaces`);
-  fs.mkdirSync(`${projectName}/src/models`);
-  fs.mkdirSync(`${projectName}/src/errors`);
-  fs.mkdirSync(`${projectName}/src/email`);
+  fs.mkdirSync(path.join(projectName, 'src'));
+  fs.mkdirSync(path.join(projectName, 'src', 'routes'));
+  fs.mkdirSync(path.join(projectName, 'src', 'middlewares'));
+  fs.mkdirSync(path.join(projectName, 'src', 'controllers'));
+  fs.mkdirSync(path.join(projectName, 'src', 'services'));
+  fs.mkdirSync(path.join(projectName, 'src', 'utils'));
+  fs.mkdirSync(path.join(projectName, 'src', 'config'));
+  fs.mkdirSync(path.join(projectName, 'src', 'interfaces'));
+  fs.mkdirSync(path.join(projectName, 'src', 'models'));
+  fs.mkdirSync(path.join(projectName, 'src', 'errors'));
+  fs.mkdirSync(path.join(projectName, 'src', 'email'));
 
   createCommonFiles(projectName);
 
@@ -125,7 +129,11 @@ const setupJavaScript = async (projectName) => {
 
   // Initialize npm
   const packageManager = getPackageManager();
-  execSync(`cd ${projectName} && ${packageManager} init -y`);
+  if (packageManager === 'pnpm') {
+    execSync(`${packageManager} init`, { cwd: projectName });
+  } else {
+    execSync(`${packageManager} init -y`, { cwd: projectName });
+  }
 
   // Install packages
   await installPackages(projectName, ['express', 'dotenv']);
