@@ -97,6 +97,7 @@ const setupTypeScript = async (projectName) => {
   // Add scripts to package.json
   const pkgJsonPath = path.join(projectName, 'package.json');
   const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8'));
+  pkgJson.scripts = {};
   pkgJson.main = 'src/index.ts';
   pkgJson.scripts.dev = 'ts-node-dev --respawn --transpile-only src/index.ts';
   pkgJson.scripts.build = 'tsc';
@@ -142,6 +143,7 @@ const setupJavaScript = async (projectName) => {
   // Add scripts to package.json
   const pkgJsonPath = path.join(projectName, 'package.json');
   const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8'));
+  pkgJson.scripts = {};
   pkgJson.main = 'src/index.js';
   pkgJson.scripts.dev = 'nodemon src/index.js';
   pkgJson.scripts.start = 'node src/index.js';
