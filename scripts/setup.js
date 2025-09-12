@@ -128,12 +128,27 @@ const setupJavaScript = async (projectName) => {
   fs.copyFileSync(path.join(templateDir, 'javascript', '.eslintrc.json'), path.join(projectName, '.eslintrc.json'));
   fs.copyFileSync(path.join(templateDir, 'javascript', '.prettierrc.json'), path.join(projectName, '.prettierrc.json'));
 
-  // Initialize npm
-  const packageManager = getPackageManager();
-  if (packageManager === 'pnpm') {
-    execSync(`${packageManager} init`, { cwd: projectName });
-  } else {
-    execSync(`${packageManager} init -y`, { cwd: projectName });
+  // Initialize package manager
+  let packageManager = getPackageManager();
+  try {
+    if (packageManager === 'pnpm') {
+      execSync(`${packageManager} init`, { cwd: projectName, stdio: 'inherit' });
+    } else {
+      execSync(`${packageManager} init -y`, { cwd: projectName, stdio: 'inherit' });
+    }
+  } catch (error) {
+    console.warn(`
+[!] Failed to initialize with ${packageManager}. Attempting to fall back to npm...`);
+    packageManager = 'npm';
+    try {
+      execSync('npm init -y', { cwd: projectName, stdio: 'inherit' });
+      console.log('[+] Successfully initialized with npm.');
+    } catch (npmError) {
+      console.error(`
+[!!] Critical error: Failed to initialize project with npm as well.`);
+      console.error('Please ensure Node.js and npm are installed correctly and try again.');
+      throw npmError;
+    }
   }
 
   // Install packages
