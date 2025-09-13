@@ -23,18 +23,14 @@ jobs:
       run: npm install
 
     - name: Run CLI for JavaScript Project
-      shell: bash
-      run: |
-        echo -e "js-app\nJavaScript" | node ./scripts/setup.js
+      run: node ./scripts/setup.js --projectName=js-app --language=JavaScript
 
     - name: Verify JavaScript Project
       shell: bash
       run: test -f ./js-app/package.json && test -f ./js-app/src/index.js
 
     - name: Run CLI for TypeScript Project
-      shell: bash
-      run: |
-        echo -e "ts-app\nTypeScript" | node ./scripts/setup.js
+      run: node ./scripts/setup.js --projectName=ts-app --language=TypeScript
 
     - name: Verify TypeScript Project
       shell: bash
