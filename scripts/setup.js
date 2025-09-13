@@ -166,22 +166,39 @@ const setupJavaScript = async (projectName) => {
 };
 
 const init = async () => {
-  const answers = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'projectName',
-      message: 'What is the name of your project?',
-      default: 'my-express-app',
-    },
-    {
-      type: 'list',
-      name: 'language',
-      message: 'Choose a language for your project:',
-      choices: ['TypeScript', 'JavaScript'],
-    },
-  ]);
+  const args = process.argv.slice(2).reduce((acc, arg) => {
+    const [key, value] = arg.split('=');
+    if (key && value) {
+      acc[key.replace(/^--/, '')] = value;
+    }
+    return acc;
+  }, {});
 
-  const { projectName, language } = answers;
+  let { projectName, language } = args;
+
+  if (!projectName || !language) {
+    const answers = await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'projectName',
+        message: 'What is the name of your project?',
+        default: 'my-express-app',
+      },
+      {
+        type: 'list',
+        name: 'language',
+        message: 'Choose a language for your project:',
+        choices: ['TypeScript', 'JavaScript'],
+      },
+    ]);
+    projectName = answers.projectName;
+    language = answers.language;
+  }
+
+  if (language !== 'TypeScript' && language !== 'JavaScript') {
+    console.error(`Error: Invalid language "${language}". Please choose 'TypeScript' or 'JavaScript'.`);
+    process.exit(1);
+  }
 
   if (language === 'TypeScript') {
     await setupTypeScript(projectName);
