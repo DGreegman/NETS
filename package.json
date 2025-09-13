@@ -13,7 +13,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "inquirer": "^8.2.4",
+    "node-fetch": "^3.3.2",
     "ora": "^4.1.1"
   },
   "devDependencies": {
