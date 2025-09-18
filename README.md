@@ -61,6 +61,23 @@ my-api/
 └── tsconfig.json (if TypeScript)
 ```
 
+## Collaborators
+
+Thanks to all the amazing contributors to this project ❤️
+
+<p>
+  <a href="https://github.com/Couragenwanduka">
+    <img src="./assets/collaboratorCourage.png" width="120" style="border-radius:40%;" alt="Courage Nduka"/>
+    <br />
+    <b>Courage Nduka</b>
+  </a>
+  <br />
+  <i>courageobunike@gmail.com</i>
+  <br />
+  <i>Software Developer</i>
+</p>
+
+
 ## License
 
 This project is licensed under the ISC License. See the [LICENSE](LICENSE) file for details.
