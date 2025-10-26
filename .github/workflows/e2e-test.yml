@@ -40,4 +40,6 @@ jobs:
       run: |
         cd test-app
         npm install
-        npm test
+        if [ "${{ matrix.includeJest }}" == "true" ]; then
+          npm test
+        fi
