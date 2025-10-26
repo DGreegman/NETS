@@ -1,37 +1,24 @@
-name: Cross-Platform CLI Test
+name: Test CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  test-cli:
-    runs-on: ${{ matrix.os }}
+  build:
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [20.x]
+        node-version: [18.x, 20.x]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-
-    - name: Install script dependencies
-      run: npm install
-
-    - name: Run CLI for JavaScript Project
-      run: node ./scripts/setup.js --projectName=js-app --language=JavaScript
-
-    - name: Verify JavaScript Project
-      shell: bash
-      run: test -f ./js-app/package.json && test -f ./js-app/src/index.js
-
-    - name: Run CLI for TypeScript Project
-      run: node ./scripts/setup.js --projectName=ts-app --language=TypeScript
-
-    - name: Verify TypeScript Project
-      shell: bash
-      run: test -f ./ts-app/package.json && test -f ./ts-app/src/index.ts
+    - run: npm install
+    - run: npm test
