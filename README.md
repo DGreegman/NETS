@@ -71,6 +71,7 @@ my-api/
 └── tsconfig.json (if TypeScript)
 ```
 
+feat/db-swagger
 ## Database Integration
 
 NETS supports the following database integrations:
@@ -94,6 +95,23 @@ npm test
 ## Environment Variables
 
 NETS uses the `dotenv` package to load environment variables from a `.env` file in the root of your project. You can add your environment variables to this file, and they will be available in your application via `process.env`.
+=======
+## Collaborators
+
+Thanks to all the amazing contributors to this project ❤️
+
+<p>
+  <a href="https://github.com/Couragenwanduka">
+    <img src="./assets/collaboratorCourage.png" width="120" style="border-radius:40%;" alt="Courage Nduka"/>
+    <br />
+    <b>Courage Nduka</b>
+  </a>
+  <br />
+  <i>courageobunike@gmail.com</i>
+  <br />
+  <i>Software Developer</i>
+</p>
+main
 
 ## License
 
