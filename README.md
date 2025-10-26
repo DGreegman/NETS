@@ -17,8 +17,19 @@ A simple, interactive CLI tool to quickly scaffold a new Node.js project using t
 - **Essential Scripts:** `package.json` is pre-configured with `dev`, `start`, `build`, and `test` scripts.
 - **Automatic `.gitignore` and `.env`:** Generates essential `.gitignore` and `.env` files from the start.
 - **User-Friendly Feedback:** Displays a loading spinner during dependency installation.
-- **CI/CD Ready:** Includes a basic GitHub Actions workflow for automated testing.
+ - **CI/CD Ready:** Includes a basic GitHub Actions workflow for automated testing.
 
+## End-to-End Testing
+
+NETS now includes a comprehensive end-to-end testing workflow that runs on every push and pull request to the `main` branch. This workflow tests the CLI on `ubuntu-latest`, `windows-latest`, and `macos-latest` to ensure that it works correctly across all major platforms.
+
+The workflow tests all the different combinations of options that your CLI provides, including:
+
+- **Language:** `JavaScript` and `TypeScript`
+- **Database:** `Mongoose`, `Sequelize`, `Prisma`, and `None`
+- **Testing:** `Jest` (or no testing framework)
+
+This ensures that every feature of the CLI is tested on every platform, giving you high confidence that the tool is working as expected.
 ## Usage
 
 To create a new project, run the following command in your terminal:

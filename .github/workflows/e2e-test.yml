@@ -1,0 +1,41 @@
+name: End-to-End CLI Test
+
+on: [push, pull_request]
+
+jobs:
+  test-cli:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [20.x]
+        language: [JavaScript, TypeScript]
+        database: [Mongoose, Sequelize, Prisma, None]
+        includeJest: [true, false]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install CLI dependencies
+      run: npm install
+
+    - name: Run CLI
+      run: >
+        node bin/cli.js 
+        --projectName=test-app 
+        --language=${{ matrix.language }} 
+        --database=${{ matrix.database }} 
+        --includeJest=${{ matrix.includeJest }}
+
+    - name: Verify Project
+      shell: bash
+      run: |
+        cd test-app
+        npm install
+        npm test
