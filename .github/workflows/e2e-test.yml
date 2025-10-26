@@ -12,6 +12,7 @@ jobs:
         language: [JavaScript, TypeScript]
         database: [Mongoose, Sequelize, Prisma, None]
         includeJest: [true, false]
+        includeSwagger: [true, false]
 
     steps:
     - name: Checkout repository
@@ -32,6 +33,7 @@ jobs:
         --language=${{ matrix.language }} 
         --database=${{ matrix.database }} 
         --includeJest=${{ matrix.includeJest }}
+        --includeSwagger=${{ matrix.includeSwagger }}
 
     - name: Verify Project
       shell: bash
