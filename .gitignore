@@ -1,3 +1,4 @@
 node_modules/
 .env
-test.jsscripts/setup.js
+test.js
+scripts/setup.js
