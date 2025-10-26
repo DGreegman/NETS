@@ -11,13 +11,14 @@ A simple, interactive CLI tool to quickly scaffold a new Node.js project using t
 - **Language Choice:** Supports both TypeScript and standard JavaScript.
 - **Database Integration:** Choose between Mongoose, Sequelize, Prisma, or no database at all.
 - **Testing Framework:** Optionally include Jest for testing.
+- **API Documentation:** Optionally include Swagger for API documentation.
 - **Modern Project Structure:** Creates a logical and scalable directory structure (controllers, services, routes, etc.).
 - **Optimized Tooling:** Comes with ESLint, Prettier, and an optimized `tsconfig.json` for TypeScript projects.
 - **Faster Installation:** Automatically detects and uses `pnpm` or `yarn` if available, resulting in a faster and more efficient setup.
 - **Essential Scripts:** `package.json` is pre-configured with `dev`, `start`, `build`, and `test` scripts.
 - **Automatic `.gitignore` and `.env`:** Generates essential `.gitignore` and `.env` files from the start.
 - **User-Friendly Feedback:** Displays a loading spinner during dependency installation.
- - **CI/CD Ready:** Includes a basic GitHub Actions workflow for automated testing.
+- **CI/CD Ready:** Includes a basic GitHub Actions workflow for automated testing.
 
 ## End-to-End Testing
 
@@ -30,6 +31,15 @@ The workflow tests all the different combinations of options that your CLI provi
 - **Testing:** `Jest` (or no testing framework)
 
 This ensures that every feature of the CLI is tested on every platform, giving you high confidence that the tool is working as expected.
+
+## API Documentation with Swagger
+
+NETS can automatically set up Swagger for your project, providing you with interactive API documentation out of the box. When you enable this feature, the following will be configured:
+
+-   **Swagger UI:** A beautiful, interactive API documentation UI will be available at `/api-docs`.
+-   **Swagger JSDoc:** The project will be configured to use `swagger-jsdoc` to generate the OpenAPI specification from JSDoc comments in your code.
+-   **Sample Documentation:** A sample route will be documented to show you how to get started.
+
 ## Usage
 
 To create a new project, run the following command in your terminal:
@@ -44,6 +54,7 @@ The tool will then prompt you for the following information:
 2.  **Language:** Your choice of either `TypeScript` or `JavaScript`.
 3.  **Database:** Your choice of database integration: `Mongoose`, `Sequelize`, `Prisma`, or `None`.
 4.  **Jest:** Whether to include Jest for testing.
+5.  **Swagger:** Whether to include Swagger for API documentation.
 
 That's it! The tool will create a new directory with your project name and install all the necessary dependencies.
 
@@ -82,7 +93,6 @@ my-api/
 └── tsconfig.json (if TypeScript)
 ```
 
-feat/db-swagger
 ## Database Integration
 
 NETS supports the following database integrations:
@@ -106,7 +116,7 @@ npm test
 ## Environment Variables
 
 NETS uses the `dotenv` package to load environment variables from a `.env` file in the root of your project. You can add your environment variables to this file, and they will be available in your application via `process.env`.
-=======
+
 ## Collaborators
 
 Thanks to all the amazing contributors to this project ❤️
@@ -122,7 +132,6 @@ Thanks to all the amazing contributors to this project ❤️
   <br />
   <i>Software Developer</i>
 </p>
-main
 
 ## License
 
