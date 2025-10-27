@@ -1,6 +1,7 @@
 {
   "name": "@dgreegman/nets",
   "version": "1.1.1",
+  "preferGlobal": true,
   "main": "index.js",
   "bin": {
     "nets": "bin/cli.js"

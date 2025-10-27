@@ -31,11 +31,26 @@ NETS can automatically set up Swagger for your project, providing you with inter
 
 To create a new project, run the following command in your terminal:
 
+### Using npx (Recommended for trying it out)
 ```bash
 npx @dgreegman/nets
 ```
 
+### Global Installation (Recommended for frequent use)
+```bash
+# Install once
+npm install -g @dgreegman/nets
+
+# Use anywhere
+nets
+```
+
+## Why Global Installation?
+- ⚡ Faster (no download each time)
+- 🎯 Simpler command (`nets` instead of `npx @dgreegman/nets`)
+- 📦 Available offline after first install
 The tool will then prompt you for the following information:
+
 
 1.  **Project Name:** The name of your new application (e.g., `my-api`).
 2.  **Language:** Your choice of either `TypeScript` or `JavaScript`.
